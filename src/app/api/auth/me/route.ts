@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies(); // Await cookies to resolve the promise
     const token = cookieStore.get('token');
 
     if (!token) {
@@ -42,4 +42,4 @@ export async function GET() {
       { status: 401 }
     );
   }
-} 
+}

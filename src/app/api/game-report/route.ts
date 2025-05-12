@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies(); // Await cookies to resolve the promise
     const token = cookieStore.get('token');
 
     console.log('Received game report request');
@@ -60,8 +60,8 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Error saving game report:', error);
     return NextResponse.json(
-      { message: 'Internal server error' },
+      { error: 'Failed to process game report' },
       { status: 500 }
     );
   }
-} 
+}

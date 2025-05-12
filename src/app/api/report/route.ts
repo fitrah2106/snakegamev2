@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     return NextResponse.json(report);
   } catch (error) {
     console.error('Error saving score:', error);
-    return NextResponse.json({ error: 'Gagal menyimpan skor' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to save score' }, { status: 500 });
   }
 }
 
