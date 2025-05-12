@@ -15,7 +15,6 @@ export default function SnakeGame() {
   const [food, setFood] = useState({ x: 5, y: 5 });
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
@@ -178,7 +177,7 @@ export default function SnakeGame() {
           </h1>
           <div className="flex items-center gap-4">
             <div className="text-xl font-semibold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-              High Score: {highScore}
+              High Score: {0}
             </div>
             <button
               onClick={() => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -75,7 +75,7 @@ export default function GamePage() {
     }
   };
 
-  const loop = () => {
+  const loop = useCallback(() => {
     if (canvasRef.current && !gameOver) {
       const ctx = canvasRef.current.getContext("2d");
       if (ctx) {
@@ -86,7 +86,7 @@ export default function GamePage() {
     } else if (gameOver) {
       postScore(score);
     }
-  };
+  }, [canvasRef, gameOver, score]);
 
   const postScore = async (score: number) => {
     await fetch("/api/report", {
