@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function SnakeGame() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -58,7 +58,7 @@ export default function SnakeGame() {
     }
   };
 
-  const loop = () => {
+  const loop: () => void = useCallback(() => {
     if (canvasRef.current && !gameOver) {
       const ctx = canvasRef.current.getContext('2d');
       if (ctx) {
@@ -69,7 +69,7 @@ export default function SnakeGame() {
     } else if (gameOver) {
       postScore(score);
     }
-  };
+  }, [gameOver, score]);
 
   const postScore = async (score: number) => {
     await fetch('/api/report', {
